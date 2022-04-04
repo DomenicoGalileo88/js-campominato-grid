@@ -11,8 +11,18 @@ header{
     align-items: center;
 }
 
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+header img{
+    width: 50px;
+    margin-right: 1rem;
+}
+
 #play{
-    padding: 2px 15px;
+    padding: 0 15px;
 }
 
 main {
@@ -20,8 +30,9 @@ main {
 }
 
 .container{
-    width: 800px;
+    width: 400px;
     margin: 0 auto;
+    padding: 4rem 0;
 }
 
 .cells{
@@ -33,10 +44,21 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: calc(100% / 8);
     color: black;
     border: 2px solid black;
     aspect-ratio: 1 / 1;
+}
+
+.cell_easy{
+    width: calc(100% / 7);
+}
+
+.cell_medium {
+    width: calc(100% / 9);
+}
+
+.cell_hard {
+    width: calc(100% / 10);
 }
 
 .bg_blue{

@@ -53,8 +53,10 @@ con difficoltà 3 => tra 1 e 49
  */
     const limite = document.getElementById('difficolta').value;
     //console.log(limite);
+   
 
     let limite_num;
+    
 
     if (limite == 'easy') {
         limite_num = 49;
@@ -66,6 +68,21 @@ con difficoltà 3 => tra 1 e 49
     //console.log(limite_num);
     generaGriglia('.cells', 'div', 'cell', limite_num);
     selectElements('.cell', 'bg_blue');
+    
+    const cells = document.querySelectorAll('.cell');
+
+    for (let i = 0; i < cells.length; i++) {
+        const cell = cells[i];
+
+        if (limite == 'easy') {
+            cell.classList.add('cell_easy');
+        } else if (limite == 'medium'){
+            cell.classList.add('cell_medium');
+        } else if (limite == 'hard') {
+            cell.classList.add('cell_hard');
+        }
+    }
+
 });
 
 //Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
