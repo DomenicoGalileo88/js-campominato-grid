@@ -37,6 +37,8 @@ function generaGriglia(selettore, nome_tag, nome_classe, limite) {
     }
 };
 
+
+
 // funzione che genera numeri in base alla difficoltà
 function generaNumeri(limite) {
     let numeri = [];
@@ -45,9 +47,6 @@ function generaNumeri(limite) {
         let numero = 1 + i;
         numeri.push(numero);
     }
-    console.log(numeri);
-    
-
 }
 
 let play = document.getElementById('play');
@@ -74,8 +73,6 @@ con difficoltà 3 => tra 1 e 49
     //console.log(limite_num);
 
     generaGriglia('.cells', 'div', 'cell', limite_num);
-    /* selectElements('.cell', 'active') */
-    generaNumeri(limite_num);
 });
 
 
