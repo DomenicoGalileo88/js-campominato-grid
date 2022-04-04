@@ -6,20 +6,12 @@ con difficoltà 1 => tra 1 e 100
 con difficoltà 2 => tra 1 e 81
 con difficoltà 3 => tra 1 e 49
 Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
-Consigli del giorno:
-:mando: Scriviamo prima cosa vogliamo fare passo passo in italiano, dividiamo il lavoro in micro problemi.
-Ad esempio: Di cosa ho bisogno per generare i numeri?
-Proviamo sempre prima con dei console.log() per capire se stiamo ricevendo i dati giusti.
-Le validazioni e i controlli possiamo farli anche in un secondo momento.
 */
-
-
 
 
 //L'utente indica un livello di difficoltà in base al quale viene generata una griglia di gioco quadrata
 
-
-// Genera una grigli attraverso una funzione
+// Genera una griglia attraverso una funzione
 /**
  * Genera una griglia
  * @param {string} selettore selettore
@@ -38,26 +30,38 @@ function generaGriglia(selettore, nome_tag, nome_classe, limite) {
         cellItem.innerHTML = i;
         cellsElement.append(cellItem);
     }
-    
 };
 
-// quando clicco su play
+// Funzione che seleziona un elemento e gli aggiunge una classe al click su una cella
+/**
+ * Funzione che attiva una classe al click su una cella
+ * @param {string} selettore 
+ * @param {*} classe_attivata 
+ */
+function selectElements(selettore, classe_attivata) {
+    const cells = document.querySelectorAll(selettore);
+
+    for (let i = 0; i < cells.length; i++) {
+        const cell = cells[i];
+
+        cell.addEventListener('click', function () {
+            //console.log(this, i);
+            this.classList.toggle(classe_attivata);
+        });
+    };
+};
+
+// quando clicca su play
 let play = document.getElementById('play');
 play.addEventListener('click', function(event) {
     event.preventDefault();
-    /*
-in cui ogni cella contiene un numero tra quelli compresi in un range:
-con difficoltà 1 => tra 1 e 100
-con difficoltà 2 => tra 1 e 81
-con difficoltà 3 => tra 1 e 49
- */
+
     const limite = document.getElementById('difficolta').value;
     //console.log(limite);
    
-
+    // Numero di celle assegnato per difficoltà
     let limite_num;
     
-
     if (limite == 'easy') {
         limite_num = 49;
     } else if (limite == 'medium'){
@@ -67,8 +71,11 @@ con difficoltà 3 => tra 1 e 49
     }
     //console.log(limite_num);
     generaGriglia('.cells', 'div', 'cell', limite_num);
+
+    //Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
     selectElements('.cell', 'bg_blue');
     
+    // In base alla scelta della difficoltà cambia la grandezza della cella e della griglia
     const cells = document.querySelectorAll('.cell');
 
     for (let i = 0; i < cells.length; i++) {
@@ -82,21 +89,4 @@ con difficoltà 3 => tra 1 e 49
             cell.classList.add('cell_hard');
         }
     }
-
 });
-
-//Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
-
-function selectElements(selector, active_class) {
-    const cells = document.querySelectorAll(selector);
-
-    for (let i = 0; i < cells.length; i++) {
-        const cell = cells[i];
-
-        cell.addEventListener('click', function () {
-            console.log(this, i);
-
-            this.classList.toggle(active_class);
-        });
-    };
-};
