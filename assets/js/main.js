@@ -29,39 +29,19 @@ Le validazioni e i controlli possiamo farli anche in un secondo momento.
  */
 function generaGriglia(selettore, nome_tag, nome_classe, limite) {
     const cellsElement = document.querySelector(selettore);
+    
+    cellsElement.innerHTML = ''; //Pulizia celle
 
     for (let i = 1; i <= limite; i++) {
         const cellItem = document.createElement(nome_tag);
         cellItem.classList.add(nome_classe);
+        cellItem.innerHTML = i;
         cellsElement.append(cellItem);
     }
+    
 };
 
-// funzioni che generano numeri in base alla difficoltà
-
-/**
- * 
- * @param {number} min Minimun number to generate
- * @param {number} max Max number
- * @returns {number}
- */
-function getRandomInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
-function generaNumeri(limite) {
-    let numeri = [];
-    while (numeri.length !== limite) {
-        const numero = getRandomInteger(1, limite);
-
-        if (!numeri.includes(numero)) {
-            numeri.push(numero);
-        }
-    }
-    return numeri.sort((a, b) => a - b);
-};
-console.log(generaNumeri(100));
-
+// quando clicco su play
 let play = document.getElementById('play');
 play.addEventListener('click', function(event) {
     event.preventDefault();
@@ -84,11 +64,22 @@ con difficoltà 3 => tra 1 e 49
         limite_num = 100;
     }
     //console.log(limite_num);
-
     generaGriglia('.cells', 'div', 'cell', limite_num);
+    selectElements('.cell', 'bg_blue');
 });
 
-
-
-
 //Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
+
+function selectElements(selector, active_class) {
+    const cells = document.querySelectorAll(selector);
+
+    for (let i = 0; i < cells.length; i++) {
+        const cell = cells[i];
+
+        cell.addEventListener('click', function () {
+            console.log(this, i);
+
+            this.classList.toggle(active_class);
+        });
+    };
+};

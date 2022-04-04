@@ -30,10 +30,17 @@ main {
 }
 
 .cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: calc(100% / 8);
     color: black;
     border: 2px solid black;
     aspect-ratio: 1 / 1;
+}
+
+.bg_blue{
+    background-color: cornflowerblue;
 }
 
 footer{
