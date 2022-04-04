@@ -37,20 +37,30 @@ function generaGriglia(selettore, nome_tag, nome_classe, limite) {
     }
 };
 
+// funzione che genera numeri in base alla difficoltà
+function generaNumeri(limite) {
+    for (i = 1; i <= limite; i++){
+        let numeri = [];
+        let numero = Math.floor(Math.random() * 101);
+        numeri.push(numero);
+        numeri.sort((a, b) => a - b);
+        console.log(numeri);
+
+    }
+}
+
+generaNumeri(100);
+
 
 let play = document.getElementById('play');
 play.addEventListener('click', function(event) {
     event.preventDefault();
-
     /*
 in cui ogni cella contiene un numero tra quelli compresi in un range:
 con difficoltà 1 => tra 1 e 100
 con difficoltà 2 => tra 1 e 81
 con difficoltà 3 => tra 1 e 49
  */
-
-
-
     const limite = document.getElementById('difficolta').value;
     //console.log(limite);
 
@@ -70,17 +80,7 @@ con difficoltà 3 => tra 1 e 49
    
 });
 
-function generaNumeri() {
-    let numeri = [];
-    let numero = Math.random() * 101;
-    for (let i = 1; i < 100; i++) {
-        
-        numeri.push(i);
-        
-    }
-};
 
-console.log(generaNumeri()); 
 
 
 //Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
