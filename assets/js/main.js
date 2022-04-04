@@ -37,17 +37,30 @@ function generaGriglia(selettore, nome_tag, nome_classe, limite) {
     }
 };
 
+// funzioni che generano numeri in base alla difficoltà
 
+/**
+ * 
+ * @param {number} min Minimun number to generate
+ * @param {number} max Max number
+ * @returns {number}
+ */
+function getRandomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
-// funzione che genera numeri in base alla difficoltà
 function generaNumeri(limite) {
     let numeri = [];
-    for (i = 0; i <= limite - 1; i++){
+    while (numeri.length !== limite) {
+        const numero = getRandomInteger(1, limite);
 
-        let numero = 1 + i;
-        numeri.push(numero);
+        if (!numeri.includes(numero)) {
+            numeri.push(numero);
+        }
     }
-}
+    return numeri.sort((a, b) => a - b);
+};
+console.log(generaNumeri(100));
 
 let play = document.getElementById('play');
 play.addEventListener('click', function(event) {
